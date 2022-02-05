@@ -25,6 +25,9 @@ Future<void> main(List<String> args) async {
               break;
             case 'text_link':
               print(element['href'].toString().trim());
+              break;
+            default:
+            // TODO(any): something
           }
         }
       }

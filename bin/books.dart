@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 
 Future<void> main(List<String> args) async {
-
   final fileDescriptions = File('BookDescriptions.json');
   final json = await fileDescriptions.readAsString();
 
@@ -13,19 +12,19 @@ Future<void> main(List<String> args) async {
       print('\n\n-----');
       print(message['id']);
       for (final element in message['text']) {
-        if (element is Map){
-          switch(element['type']){
+        if (element is Map) {
+          switch (element['type']) {
             case 'hashtag':
-            print(element['text'].toString().trim());
-            break;
+              print(element['text'].toString().trim());
+              break;
             case 'pre':
-            print(element['text'].toString().trim());
-            break;
+              print(element['text'].toString().trim());
+              break;
             case 'code':
-            print(element['text'].toString().trim());
-            break;
+              print(element['text'].toString().trim());
+              break;
             case 'text_link':
-            print(element['href'].toString().trim());
+              print(element['href'].toString().trim());
           }
         }
       }

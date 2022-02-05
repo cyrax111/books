@@ -2,31 +2,33 @@ import 'dart:convert';
 import 'dart:io';
 
 Future<void> main(List<String> args) async {
-  int number;
 
-  int? number2;
-  print(number2);
-
-  final file = File('result.json');
-  final json = await file.readAsString();
+  final fileDescriptions = File('BookDescriptions.json');
+  final json = await fileDescriptions.readAsString();
 
   final parsedJson = jsonDecode(json);
   final list = parsedJson['messages'];
   for (final message in list) {
-    if (message is Map && (message['id'] ?? 0) == 21) {
-      print(message['photo']);
-
+    if (message is Map && (message['id'] ?? 0) >= 21) {
+      print('\n\n-----');
+      print(message['id']);
       for (final element in message['text']) {
-        if (element is Map && element['type'] == 'code') {
-          print(element['text']);
+        if (element is Map){
+          switch(element['type']){
+            case 'hashtag':
+            print(element['text'].toString().trim());
+            break;
+            case 'pre':
+            print(element['text'].toString().trim());
+            break;
+            case 'code':
+            print(element['text'].toString().trim());
+            break;
+            case 'text_link':
+            print(element['href'].toString().trim());
+          }
         }
       }
     }
   }
-
-  // print(parsedJson['messages']);
 }
-
-// void thenReady(String str) {
-//   print(str);
-// }
